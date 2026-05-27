@@ -1,0 +1,24 @@
+[user]
+	name = emmolab
+	email = 108276745+emmolab@users.noreply.github.com
+[init]
+	defaultBranch = main
+[pull]
+	rebase = false
+[push]
+	autoSetupRemote = true
+[core]
+	editor = vim
+	pager = less -FRX
+[color]
+	ui = auto
+[alias]
+	st = status -sb
+	lg = log --oneline --decorate --graph --all
+	last = log -1 HEAD --stat
+	undo = reset --soft HEAD~1
+	root = rev-parse --show-toplevel
+	co = checkout
+	br = branch
+	ci = commit
+	df = diff
