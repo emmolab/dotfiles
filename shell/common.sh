@@ -49,6 +49,7 @@ alias gco='git checkout'
 alias gd='git diff'
 alias gl='git log --oneline --decorate --graph -20'
 alias gs='git status -sb'
+alias docker-compose='docker compose'
 alias please='sudo $(history -p !!)'
 
 # Helper: make and enter directory
