@@ -2,8 +2,6 @@
 
 A personal terminal setup with a **clean operator-style feel**: dark, practical, and fast to read.
 
-This repo is intentionally original. It takes broad inspiration from simple symlink-based dotfile repos, but the structure, theme, prompt, aliases, and tmux layout here are custom.
-
 ## Style: Midnight Signal
 
 The theme aims for:
@@ -16,8 +14,11 @@ The theme aims for:
 ## Included
 
 - `shell/common.sh` – shared shell config, prompt, aliases, helpers
-- `shell/.bashrc` – Bash entrypoint
+- `shell/.bashrc` – Bash entrypoint for normal users
+- `shell/.bash_profile` – Bash login entrypoint that loads `.bashrc`
 - `shell/.zshrc` – Zsh entrypoint
+- `root/.bashrc` – root-focused Bash prompt with stronger privilege contrast
+- `root/.bash_profile` – small root login profile that sources `.profile` and `.bashrc`
 - `tmux/.tmux.conf` – tmux theme + sane keybinds
 - `git/.gitconfig` – quality-of-life git defaults and aliases
 - `.inputrc` – better shell history/search behavior
@@ -59,12 +60,32 @@ cd ~/dotfiles
 - Existing files are backed up to `~/.dotfiles-backups/<timestamp>/`
 - The installer creates symlinks instead of copying files
 - Bash and Zsh are both supported
+- Bash login shells are supported via the included `.bash_profile`
 - The prompt does not require Starship, Oh My Zsh, or external prompt frameworks
 
 ## Customization
 
 If you want to tune colors later, start in:
 
-- `shell/common.sh` for prompt colors and aliases
+- `shell/common.sh` for shared aliases/helpers
+- `shell/.bashrc` for the normal-user Bash prompt
+- `root/.bashrc` for the root-only Bash prompt and stronger privilege styling
 - `tmux/.tmux.conf` for pane/status styling
 - `git/.gitconfig` for git aliases
+
+## Root usage
+
+The repo includes a dedicated root prompt designed to be more obvious than the normal-user prompt without changing the overall Midnight Signal layout:
+
+- bold two-line prompt
+- stronger red emphasis so you can tell root apart immediately
+- the same general structure as the normal-user prompt, so it still feels cohesive
+
+To test or install it manually for root later, you can symlink:
+
+```bash
+sudo ln -sf /path/to/dotfiles/root/.bashrc /root/.bashrc
+sudo ln -sf /path/to/dotfiles/root/.bash_profile /root/.bash_profile
+```
+
+Root dotfiles are intentionally kept as a separate manual step so normal-user installation stays predictable.

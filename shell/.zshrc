@@ -1,7 +1,18 @@
 # Midnight Signal Zsh profile
 
+case $- in
+  *i*) ;;
+  *) return ;;
+esac
+
+[ -n "${__MIDNIGHT_SIGNAL_ZSHRC_LOADED:-}" ] && return
+__MIDNIGHT_SIGNAL_ZSHRC_LOADED=1
+
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 __ms_zsh_file="${(%):-%N}"
+if [[ -L "$__ms_zsh_file" ]]; then
+  __ms_zsh_file="$(readlink "$__ms_zsh_file")"
+fi
 __ms_zsh_dir="${__ms_zsh_file:A:h}"
 [ -f "$__ms_zsh_dir/common.sh" ] && source "$__ms_zsh_dir/common.sh"
 unset __ms_zsh_file __ms_zsh_dir

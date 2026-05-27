@@ -27,12 +27,14 @@ restore_backup_if_present() {
 }
 
 unlink_if_owned "$REPO_DIR/shell/.bashrc" "$HOME/.bashrc"
+unlink_if_owned "$REPO_DIR/shell/.bash_profile" "$HOME/.bash_profile"
 unlink_if_owned "$REPO_DIR/shell/.zshrc" "$HOME/.zshrc"
 unlink_if_owned "$REPO_DIR/tmux/.tmux.conf" "$HOME/.tmux.conf"
 unlink_if_owned "$REPO_DIR/git/.gitconfig" "$HOME/.gitconfig"
 unlink_if_owned "$REPO_DIR/.inputrc" "$HOME/.inputrc"
 
 restore_backup_if_present .bashrc "$HOME/.bashrc"
+restore_backup_if_present .bash_profile "$HOME/.bash_profile"
 restore_backup_if_present .zshrc "$HOME/.zshrc"
 restore_backup_if_present .tmux.conf "$HOME/.tmux.conf"
 restore_backup_if_present .gitconfig "$HOME/.gitconfig"

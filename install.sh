@@ -29,6 +29,7 @@ link_file() {
 }
 
 link_file "$REPO_DIR/shell/.bashrc" "$HOME/.bashrc"
+link_file "$REPO_DIR/shell/.bash_profile" "$HOME/.bash_profile"
 link_file "$REPO_DIR/shell/.zshrc" "$HOME/.zshrc"
 link_file "$REPO_DIR/tmux/.tmux.conf" "$HOME/.tmux.conf"
 link_file "$REPO_DIR/git/.gitconfig" "$HOME/.gitconfig"

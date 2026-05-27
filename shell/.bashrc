@@ -1,5 +1,13 @@
 # Midnight Signal Bash profile
 
+case $- in
+  *i*) ;;
+  *) return ;;
+esac
+
+[ -n "${__MIDNIGHT_SIGNAL_BASHRC_LOADED:-}" ] && return
+__MIDNIGHT_SIGNAL_BASHRC_LOADED=1
+
 [ -f "$HOME/.bashrc.local" ] && . "$HOME/.bashrc.local"
 __ms_bash_dir="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd)"
 [ -f "$__ms_bash_dir/common.sh" ] && . "$__ms_bash_dir/common.sh"
@@ -34,4 +42,11 @@ __ms_bash_prompt() {
   PS1="${status}${c_cyan}\u${c_dim}@${c_reset}${c_blue}\h${c_reset} ${c_gray}in${c_reset} ${c_gold}\w${c_reset}${git}\n${c_green}${symbol}${c_reset} "
 }
 
-PROMPT_COMMAND=__ms_bash_prompt
+if [ -n "${PROMPT_COMMAND:-}" ]; then
+  case ";${PROMPT_COMMAND};" in
+    *";__ms_bash_prompt;"*) ;;
+    *) PROMPT_COMMAND="__ms_bash_prompt;${PROMPT_COMMAND}" ;;
+  esac
+else
+  PROMPT_COMMAND=__ms_bash_prompt
+fi
